@@ -46,7 +46,7 @@ while goOn:
         psm.BBM1.runDegs(0,50,False,False)
         psm.BAM1.setSpeed(-22)
         psm.BBM1.setSpeed(-22)
-    sleep(.2)
+    sleep(.1)
     #termination by pressing the button
     if (psm.isKeyPressed()):
         goOn = False
