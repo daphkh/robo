@@ -1,0 +1,73 @@
+# Daphne, Bec, Grace, Anna
+# GSET Robotics
+# July 2, 2016
+
+#PORTS DIRECTORY
+#BAS1 - color sensor
+#BBS1 - reflective light sensor
+#BAM1 - motor 1
+#BBM1 - motor 2
+
+from PiStorms import PiStorms
+from time import sleep
+psm.screen.termPrintln("running program")
+
+######Major Vars###########
+psm = PiStorms()
+goOn = True
+
+######Helper Methods######### 
+def isRed(color):
+    if color >= 7 and color <=9:
+        return True
+    return False
+
+#####Main Method#######
+#line following and termination by passing the red line
+while goOn:
+    #termination by passing the red line
+    color = psm.BAS1.colorSensorNXT()
+    if isRed(color):
+        goOn = False
+        psm.led(1,255,0,0)
+    #line following
+    light = psm.BBS1.lightSensorNXT(True)
+    if light < 590:#if very white, turn sharp
+        psm.BBM1.runDegs(90,20,False,False)
+    elif light < 620: #if the light intensity is high (white, way too right of the line)
+        psm.BBM1.runDegs(15,15,False,False)
+    elif light > 770:#if very black, turn sharp
+        psm.BAM1.runDegs(140,30,False,False)
+    elif light > 700: #if the light intensiy is low (black, on the line)
+        psm.BAM1.runDegs(25,15,False,False)
+    else: # light <= 400 and light >= 200, mid light intensity means it is by the line
+        #go straight
+        psm.BAM1.runDegs(0,50,False,False)
+        psm.BBM1.runDegs(0,50,False,False)
+        psm.BAM1.setSpeed(-22)
+        psm.BBM1.setSpeed(-22)
+    sleep(.2)
+    #termination by pressing the button
+    if (psm.isKeyPressed()):
+        goOn = False
+        break
+    
+sleep(1)
+#search house !!!!!!!!!!!!!!!!!!!!!!!
+#go straight, stop well before wall
+dist = psm.BBS1.distanceUSEV3()
+#2- turn right 90
+#3- go straight, stop when see green
+#4- turn 180
+#5- go straight, stop when see blue
+#6- turn 180
+#7- record distance (put sensor on the LEFT)
+#8- go straight, check if distance changed by > 10 inch, if so then break out of loop
+#9- turn 90* counter clock wise
+#10- go straight, stop when see red, stop
+            
+            
+
+psm.BAM1.brake()
+psm.BBM1.brake()
+exit = True
