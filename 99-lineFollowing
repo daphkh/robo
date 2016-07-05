@@ -10,7 +10,6 @@
 
 from PiStorms import PiStorms
 from time import sleep
-psm.screen.termPrintln("running program")
 
 ######Major Vars###########
 psm = PiStorms()
