@@ -5,15 +5,21 @@
 #PORTS DIRECTORY
 #BAS1 - color sensor
 #BBS1 - reflective light sensor
-#BAM1 - motor 1
-#BBM1 - motor 2
+#BAM1 - motor RIGHT
+#BBM1 - motor LEFT
 
 from PiStorms import PiStorms
 from time import sleep
+from HiTechnicColorV2 import HiTechnicColorV2
+
 
 ######Major Vars###########
 psm = PiStorms()
 goOn = True
+from HiTechnicColorV2 import HiTechnicColorV2
+psm = PiStorms()
+hc=HiTechnicColorV2()
+psm.BAS1.activateCustomSensorI2C()
 
 ######Helper Methods######### 
 def isRed(color):
@@ -26,6 +32,11 @@ def isRed(color):
 while goOn:
     #line following
     light = psm.BBS1.lightSensorNXT(True)
+    color = hc.get_colornum()
+    if isRed(color):
+        goOn = False
+        psm.led(1,255,0,0)
+    #termination by pressing the button
     if light < 600: #if the light intensity is high (white, way too right of the line)   left
         psm.BAM1.setSpeed(-45)
         psm.BBM1.setSpeed(10)
@@ -44,23 +55,8 @@ while goOn:
     if (psm.isKeyPressed()):
         goOn = False
         break
-    
-sleep(.5)
-#search house !!!!!!!!!!!!!!!!!!!!!!!
-#go straight, stop well before wall
-dist = psm.BBS1.distanceUSEV3()
-#2- turn right 90
-#3- go straight, stop when see green
-#4- turn 180
-#5- go straight, stop when see blue
-#6- turn 180
-#7- record distance (put sensor on the LEFT)
-#8- go straight, check if distance changed by > 10 inch, if so then break out of loop
-#9- turn 90* counter clock wise
-#10- go straight, stop when see red, stop
-            
-            
 
+sleep(.5)
 psm.BAM1.brake()
 psm.BBM1.brake()
 exit = True
