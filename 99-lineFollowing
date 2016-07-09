@@ -61,11 +61,11 @@ psm.BAM1.brake()
 psm.BBM1.brake()
 sleep(.5)
 psm.led(1,0,0,0)
-#go into first room (straight, turn, straight)
-psm.BAM1.setSpeed(-20)
-psm.BBM1.setSpeed(-25)
+#go into first room (straight, turn right, straight)
+psm.BAM1.setSpeed(-25)
+psm.BBM1.setSpeed(-20)
 sleep(1)
-psm.BAM1.runDegs(45,40,False,False)
+psm.BAM1.runDegs(70,40,False,False)
 sleep(2.5)
 #go into second room (go backwards)
 psm.BBM1.setSpeed(100)
@@ -74,10 +74,19 @@ sleep(1.6)
 psm.BBM1.setSpeed(0)
 psm.BAM1.setSpeed(0)
 sleep(.5)
+#go into third room (go straight, turn left)
+psm.BAM1.setSpeed(-30)
+psm.BBM1.setSpeed(-30)
+sleep(2)
+psm.BBM1.runDegs(80,40,False,False)
+sleep(2.5)
 #done
 exit = True
 psm.BAM1.brake()
 psm.BBM1.brake()
+
+
+
 
 
 
