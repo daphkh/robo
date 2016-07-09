@@ -81,14 +81,11 @@ psm.BAM1.setSpeed(-40)
 psm.BBM1.setSpeed(-40)
 sleep(1.6)
 psm.BBM1.runDegs(30,40,False,False)
-sleep(1.5)
+sleep(1.4)
 psm.BAM1.setSpeed(-40)
 psm.BBM1.setSpeed(-40)
 sleep(.5)
 #done
-exit = True
-psm.BAM1.brake()
-psm.BBM1.brake()
 
 
 
