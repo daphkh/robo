@@ -59,4 +59,4 @@ while goOn:
 sleep(.5)
 psm.BAM1.brake()
 psm.BBM1.brake()
-exit = True
+sleep(.5)
