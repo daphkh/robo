@@ -56,7 +56,15 @@ while goOn:
         goOn = False
         break
 
-sleep(.5)
+#now in the house    
 psm.BAM1.brake()
 psm.BBM1.brake()
 sleep(.5)
+psm.led(1,0,0,0)
+psm.BBM1.runDegs(-360,20,False,False)
+sleep(12)
+psm.led(1,0,255,0)
+exit = True
+psm.BAM1.brake()
+psm.BBM1.brake()
+
