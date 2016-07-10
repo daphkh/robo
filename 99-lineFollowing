@@ -65,44 +65,63 @@ while goOn:
         psm.BBM1.setSpeed(-45)
     else: # mid light intensity means it is by the line           right 
         #go straight
-        psm.BAM1.setSpeed(-30)
-        psm.BBM1.setSpeed(-30)
+        psm.BAM1.setSpeed(-40)
+        psm.BBM1.setSpeed(-40)
     sleep(.03)
     #termination by pressing the button
     if (psm.isKeyPressed()):
         goOn = False
         break
-        
+
 #now in the house - break and turn on light
 psm.BAM1.brake()
 psm.BBM1.brake()
 sleep(1.5)
 psm.led(1,0,0,0)
 #go into first room (straight, turn right, straight)
-psm.BAM1.setSpeed(-25)
+psm.BAM1.setSpeed(-20)
 psm.BBM1.setSpeed(-25)
-sleep(1)
+sleep(1.2)
 psm.BAM1.runDegs(55,40,False,False)
-sleep(2.9)
-checkBombRoom(hc.get_colornum())
+sleep(2.8)
+
+color = hc.get_colornum()
+if color >=3 and color <=5:
+    psm.BAM1.brake()
+    psm.BBM1.brake()
+    psm.led(1,255,0,255)
+    sleep(2)
+
 psm.BBM1.setSpeed(-20)
 psm.BAM1.setSpeed(-20)
 sleep(1)
 #go into second room (go backwards)
 psm.BBM1.setSpeed(90)
 psm.BAM1.setSpeed(90)
-sleep(1.9)
-if not checkBombRoom(hc.get_colornum()):
-    psm.BBM1.setSpeed(0)
-    psm.BAM1.setSpeed(0)
-    sleep(.5)
+sleep(2.1)
+
+color = hc.get_colornum()
+if color >=3 and color <=5:
+    psm.BAM1.brake()
+    psm.BBM1.brake()
+    psm.led(1,255,0,255)
+    sleep(2)
+
+
 #go into third room (go straight, turn left)
 psm.BAM1.setSpeed(-40)
 psm.BBM1.setSpeed(-40)
-sleep(1.6)
+sleep(1.25)
 psm.BBM1.runDegs(30,40,False,False)
-sleep(1.4)
-checkBombRoom(hc.get_colornum()):
+sleep(1.2)
+
+color = hc.get_colornum()
+if color >=3 and color <=5:
+    psm.BAM1.brake()
+    psm.BBM1.brake()
+    psm.led(1,255,0,255)
+    sleep(2)
+
 psm.BAM1.setSpeed(-40)
 psm.BBM1.setSpeed(-40)
 sleep(.5)
@@ -110,6 +129,8 @@ psm.BAM1.brake()
 psm.BBM1.brake()
 exit = True
 #done
+
+
 
 
 
